@@ -1,0 +1,10 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "expo-image-crop-picker": ["../src/index"],
+      "expo-image-crop-picker/*": ["../src/*"]
+    }
+  }
+}
