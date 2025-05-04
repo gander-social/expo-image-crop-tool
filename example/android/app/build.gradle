@@ -87,9 +87,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'xyz.blueskyweb.expoimagecroppicker.example'
+    namespace 'xyz.blueskyweb.expoimagecroptool.example'
     defaultConfig {
-        applicationId 'xyz.blueskyweb.expoimagecroppicker.example'
+        applicationId 'xyz.blueskyweb.expoimagecroptool.example'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

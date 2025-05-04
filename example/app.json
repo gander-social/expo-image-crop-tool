@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "expo-image-crop-picker-example",
-    "slug": "expo-image-crop-picker-example",
+    "name": "expo-image-crop-tool-example",
+    "slug": "expo-image-crop-tool-example",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -14,7 +14,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "xyz.blueskyweb.expoimagecroppicker.example"
+      "bundleIdentifier": "xyz.blueskyweb.expoimagecroptool.example"
     },
     "android": {
       "adaptiveIcon": {
@@ -22,10 +22,11 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "xyz.blueskyweb.expoimagecroppicker.example"
+      "package": "xyz.blueskyweb.expoimagecroptool.example"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     }
   }
 }
+

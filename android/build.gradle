@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 
-group = 'xyz.blueskyweb.expoimagecroppicker'
+group = 'xyz.blueskyweb.expoimagecroptool'
 version = '0.1.0'
 
 def expoModulesCorePlugin = new File(project(":expo-modules-core").projectDir.absolutePath, "ExpoModulesCorePlugin.gradle")
@@ -32,7 +32,7 @@ if (useManagedAndroidSdkVersions) {
 }
 
 android {
-  namespace "xyz.blueskyweb.expoimagecroppicker"
+  namespace "xyz.blueskyweb.expoimagecroptool"
   defaultConfig {
     versionCode 1
     versionName "0.1.0"
@@ -40,4 +40,8 @@ android {
   lintOptions {
     abortOnError false
   }
+}
+dependencies {
+  implementation 'androidx.appcompat:appcompat:1.7.0'
+  implementation 'com.vanniktech:android-image-cropper:4.6.0'
 }

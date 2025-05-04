@@ -3,7 +3,7 @@ require 'json'
 package = JSON.parse(File.read(File.join(__dir__, '..', 'package.json')))
 
 Pod::Spec.new do |s|
-  s.name           = 'ExpoImageCropPicker'
+  s.name           = 'ExpoImageCropTool'
   s.version        = package['version']
   s.summary        = package['description']
   s.description    = package['description']
@@ -15,10 +15,11 @@ Pod::Spec.new do |s|
     :tvos => '15.1'
   }
   s.swift_version  = '5.4'
-  s.source         = { git: 'https://github.com/bluesky-social/expo-image-crop-picker' }
+  s.source         = { git: 'https://github.com/bluesky-social/expo-image-crop-tool' }
   s.static_framework = true
 
   s.dependency 'ExpoModulesCore'
+  s.dependency 'Mantis'
 
   # Swift/Objective-C compatibility
   s.pod_target_xcconfig = {

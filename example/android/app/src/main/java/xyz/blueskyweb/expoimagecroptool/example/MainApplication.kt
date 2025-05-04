@@ -1,4 +1,4 @@
-package xyz.blueskyweb.expoimagecroppicker.example
+package xyz.blueskyweb.expoimagecroptool.example
 
 import android.app.Application
 import android.content.res.Configuration

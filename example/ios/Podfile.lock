@@ -3,6 +3,9 @@ PODS:
   - DoubleConversion (1.1.6)
   - EXConstants (17.1.5):
     - ExpoModulesCore
+  - EXImageLoader (5.1.0):
+    - ExpoModulesCore
+    - React-Core
   - Expo (53.0.6):
     - DoubleConversion
     - ExpoModulesCore
@@ -36,7 +39,10 @@ PODS:
     - ExpoModulesCore
   - ExpoFont (13.3.1):
     - ExpoModulesCore
-  - ExpoImageCropPicker (0.1.0):
+  - ExpoImageCropTool (0.1.0):
+    - ExpoModulesCore
+    - Mantis
+  - ExpoImagePicker (16.1.4):
     - ExpoModulesCore
   - ExpoKeepAwake (14.1.4):
     - ExpoModulesCore
@@ -72,6 +78,7 @@ PODS:
   - hermes-engine (0.79.2):
     - hermes-engine/Pre-built (= 0.79.2)
   - hermes-engine/Pre-built (0.79.2)
+  - Mantis (2.25.0)
   - RCT-Folly (2024.11.18.00):
     - boost
     - DoubleConversion
@@ -1725,11 +1732,13 @@ DEPENDENCIES:
   - boost (from `../node_modules/react-native/third-party-podspecs/boost.podspec`)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - EXConstants (from `../node_modules/expo-constants/ios`)
+  - EXImageLoader (from `../node_modules/expo-image-loader/ios`)
   - Expo (from `../node_modules/expo`)
   - ExpoAsset (from `../node_modules/expo-asset/ios`)
   - ExpoFileSystem (from `../node_modules/expo-file-system/ios`)
   - ExpoFont (from `../node_modules/expo-font/ios`)
-  - ExpoImageCropPicker (from `../../ios`)
+  - ExpoImageCropTool (from `../../ios`)
+  - ExpoImagePicker (from `../node_modules/expo-image-picker/ios`)
   - ExpoKeepAwake (from `../node_modules/expo-keep-awake/ios`)
   - ExpoModulesCore (from `../node_modules/expo-modules-core`)
   - fast_float (from `../node_modules/react-native/third-party-podspecs/fast_float.podspec`)
@@ -1805,6 +1814,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Mantis
     - SocketRocket
 
 EXTERNAL SOURCES:
@@ -1814,6 +1824,8 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
   EXConstants:
     :path: "../node_modules/expo-constants/ios"
+  EXImageLoader:
+    :path: "../node_modules/expo-image-loader/ios"
   Expo:
     :path: "../node_modules/expo"
   ExpoAsset:
@@ -1822,8 +1834,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-file-system/ios"
   ExpoFont:
     :path: "../node_modules/expo-font/ios"
-  ExpoImageCropPicker:
+  ExpoImageCropTool:
     :path: "../../ios"
+  ExpoImagePicker:
+    :path: "../node_modules/expo-image-picker/ios"
   ExpoKeepAwake:
     :path: "../node_modules/expo-keep-awake/ios"
   ExpoModulesCore:
@@ -1970,11 +1984,13 @@ SPEC CHECKSUMS:
   boost: 7e761d76ca2ce687f7cc98e698152abd03a18f90
   DoubleConversion: cb417026b2400c8f53ae97020b2be961b59470cb
   EXConstants: 26f334022fc0b454b7ecdc7c12d36ffa68c7c397
+  EXImageLoader: ab4fcf9240cf3636a83c00e3fc5229d692899428
   Expo: c2eabd66da95a18cc7c631b5410fe167283023c2
   ExpoAsset: cac9909bd4c502b54b87b4e7495121c1194b3c5b
   ExpoFileSystem: 3bd7e34a164a9093c23b5a7b690efab8138ebf8e
   ExpoFont: 312c73403bbd4f98e1d6a5330641a56292583cd2
-  ExpoImageCropPicker: b83a8bffedac406826514accdf793cfe14c3e6cf
+  ExpoImageCropTool: 14db6164ade5ff74fc68b6dfe641bf3a26f83762
+  ExpoImagePicker: d2fff488a0738343a3cc21e98544ee9feafaa0e6
   ExpoKeepAwake: e8dedc115d9f6f24b153ccd2d1d8efcdfd68a527
   ExpoModulesCore: 0bf5158ae9fb71e575582a8a48dbd26ced42f306
   fast_float: 06eeec4fe712a76acc9376682e4808b05ce978b6
@@ -1982,6 +1998,7 @@ SPEC CHECKSUMS:
   fmt: a40bb5bd0294ea969aaaba240a927bd33d878cdd
   glog: 5683914934d5b6e4240e497e0f4a3b42d1854183
   hermes-engine: 314be5250afa5692b57b4dd1705959e1973a8ebe
+  Mantis: c2f4e8520bfab475ab3d31ec2c857c18f18b98e8
   RCT-Folly: 36fe2295e44b10d831836cc0d1daec5f8abcf809
   RCTDeprecation: 83ffb90c23ee5cea353bd32008a7bca100908f8c
   RCTRequired: eb7c0aba998009f47a540bec9e9d69a54f68136e

@@ -1,56 +1,158 @@
-import { useEvent } from 'expo';
-import ExpoImageCropPicker, { ExpoImageCropPickerView } from 'expo-image-crop-picker';
-import { Button, SafeAreaView, ScrollView, Text, View } from 'react-native';
+import {
+  Alert,
+  Button,
+  Image,
+  SafeAreaView,
+  ScrollView,
+  Text,
+} from "react-native";
+import ExpoImageCropTool, {
+  OpenCropperOptions,
+  OpenCropperResult,
+} from "expo-image-crop-tool";
+import {
+  launchImageLibraryAsync,
+  useMediaLibraryPermissions,
+} from "expo-image-picker";
+import { useState } from "react";
 
 export default function App() {
-  const onChangePayload = useEvent(ExpoImageCropPicker, 'onChange');
+  const [perms, reqPerms] = useMediaLibraryPermissions();
+
+  const [croppedImg, setCroppedImg] = useState("");
+  const [height, setHeight] = useState(0);
+  const [width, setWidth] = useState(0);
+  const [size, setSize] = useState(0);
+
+  const doCrop = async (options: Omit<OpenCropperOptions, "imageUri">) => {
+    if (!perms?.granted) {
+      if (!perms?.canAskAgain) {
+        Alert.alert(
+          "Cannot Request Image Permissions",
+          "Unable to re-request image permissions. Please enable them in system preferences",
+        );
+        return;
+      }
+      await reqPerms();
+    }
+
+    const imgRes = await launchImageLibraryAsync({
+      mediaTypes: "images",
+    });
+
+    if (!imgRes || !imgRes.assets) {
+      throw new Error("failed to get image");
+    }
+
+    let res: OpenCropperResult;
+    try {
+      res = await ExpoImageCropTool.openCropperAsync({
+        imageUri: imgRes.assets[0].uri,
+        ...options,
+      });
+    } catch (e: any) {
+      Alert.alert("Error!", e.toString());
+      return;
+    }
+
+    setCroppedImg(res.path);
+    setWidth(res.width);
+    setHeight(res.height);
+    setSize(res.size);
+    console.log(res);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.container}>
-        <Text style={styles.header}>Module API Example</Text>
-        <Group name="Constants">
-          <Text>{ExpoImageCropPicker.PI}</Text>
-        </Group>
-        <Group name="Functions">
-          <Text>{ExpoImageCropPicker.hello()}</Text>
-        </Group>
-        <Group name="Async functions">
-          <Button
-            title="Set value"
-            onPress={async () => {
-              await ExpoImageCropPicker.setValueAsync('Hello from JS!');
-            }}
+        <Text style={styles.header}>Image Cropper Example</Text>
+        <Button title="Open Cropper Regular" onPress={async () => doCrop({})} />
+        <Button
+          title="Open Cropper Circle"
+          onPress={() => doCrop({ shape: "circle" })}
+        />
+        <Button
+          title="Open Cropper 1:1"
+          onPress={() =>
+            doCrop({
+              aspectRatio: 1 / 1,
+            })
+          }
+        />
+        <Button
+          title="Open Cropper 16:9"
+          onPress={() =>
+            doCrop({
+              aspectRatio: 16 / 9,
+            })
+          }
+        />
+        <Button
+          title="Open Cropper 16:9"
+          onPress={() =>
+            doCrop({
+              aspectRatio: 9 / 16,
+            })
+          }
+        />
+        <Button
+          title="Open Cropper JPEG 50%"
+          onPress={() =>
+            doCrop({
+              aspectRatio: 9 / 16,
+              format: "jpeg",
+              compressImageQuality: 0.5,
+            })
+          }
+        />
+        <Button
+          title="Open Cropper JPEG 0.002%"
+          onPress={() =>
+            doCrop({
+              aspectRatio: 9 / 16,
+              format: "jpeg",
+              compressImageQuality: 0.0002,
+            })
+          }
+        />
+
+        <Text style={styles.header}>Output Image</Text>
+        <Text style={styles.text}>
+          Width: {width}, Height: {height}, Aspect: {aspect(width, height)},
+          Size: {size}
+        </Text>
+        {croppedImg !== "" && (
+          <Image
+            source={{ uri: croppedImg }}
+            onError={(e) => console.log(e)}
+            style={{ aspectRatio: 1, maxWidth: "100%" }}
+            resizeMode="contain"
           />
-        </Group>
-        <Group name="Events">
-          <Text>{onChangePayload?.value}</Text>
-        </Group>
-        <Group name="Views">
-          <ExpoImageCropPickerView
-            url="https://www.example.com"
-            onLoad={({ nativeEvent: { url } }) => console.log(`Loaded: ${url}`)}
-            style={styles.view}
-          />
-        </Group>
+        )}
       </ScrollView>
     </SafeAreaView>
   );
 }
 
-function Group(props: { name: string; children: React.ReactNode }) {
-  return (
-    <View style={styles.group}>
-      <Text style={styles.groupHeader}>{props.name}</Text>
-      {props.children}
-    </View>
-  );
+// Euclidean GCD
+function gcd(a: number, b: number): number {
+  return b === 0 ? a : gcd(b, a % b);
+}
+
+function aspect(width: number, height: number) {
+  const g = gcd(width, height);
+  return `${width / g}:${height / g}`;
 }
 
 const styles = {
   header: {
     fontSize: 30,
-    margin: 20,
+    marginHorizontal: 20,
+    marginVertical: 4,
+  },
+  text: {
+    marginHorizontal: 20,
+    marginVertical: 4,
   },
   groupHeader: {
     fontSize: 20,
@@ -58,13 +160,13 @@ const styles = {
   },
   group: {
     margin: 20,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     borderRadius: 10,
     padding: 20,
   },
   container: {
     flex: 1,
-    backgroundColor: '#eee',
+    backgroundColor: "#eee",
   },
   view: {
     flex: 1,

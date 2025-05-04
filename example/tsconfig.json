@@ -3,8 +3,8 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
-      "expo-image-crop-picker": ["../src/index"],
-      "expo-image-crop-picker/*": ["../src/*"]
+      "expo-image-crop-tool": ["../src/index"],
+      "expo-image-crop-tool/*": ["../src/*"]
     }
   }
 }

@@ -1,9 +1,9 @@
 {
-  "platforms": ["apple", "android", "web"],
+  "platforms": ["ios", "android"],
   "apple": {
-    "modules": ["ExpoImageCropPickerModule"]
+    "modules": ["ExpoImageCropToolModule"]
   },
   "android": {
-    "modules": ["xyz.blueskyweb.expoimagecroppicker.ExpoImageCropPickerModule"]
+    "modules": ["xyz.blueskyweb.expoimagecroptool.ExpoImageCropToolModule"]
   }
 }
