@@ -5,7 +5,7 @@ import {
 } from "./ExpoImageCropTool.types";
 
 declare class ExpoImageCropToolModule extends NativeModule {
-  openCropper(options: OpenCropperOptions): Promise<OpenCropperResult>;
+  openCropperAsync(options: OpenCropperOptions): Promise<OpenCropperResult>;
 }
 
 export default requireNativeModule<ExpoImageCropToolModule>(

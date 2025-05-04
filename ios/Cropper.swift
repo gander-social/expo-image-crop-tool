@@ -119,16 +119,27 @@ class Cropper: NSObject, CropViewControllerDelegate {
       throw CropperError.findRootView
     }
 
+    guard let toPresentInVc = Self.getTopmostViewController(from: rootVc) else {
+      throw CropperError.findRootView
+    }
+
     guard let cropVc = self.cropVc else {
       return
     }
 
-    rootVc.present(cropVc, animated: true)
+    toPresentInVc.present(cropVc, animated: true)
   }
 
   private static func getTempUrl(ext: String) -> URL? {
     let dir = FileManager().temporaryDirectory
     return URL(string: "\(dir.absoluteString)\(ProcessInfo.processInfo.globallyUniqueString).\(ext)")!
+  }
+
+  private static func getTopmostViewController(from vc: UIViewController) -> UIViewController? {
+    if let pvc = vc.presentedViewController {
+      return getTopmostViewController(from: pvc)
+    }
+    return vc
   }
 }
 
