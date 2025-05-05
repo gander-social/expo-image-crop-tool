@@ -17,7 +17,7 @@ class OpenCropperOptions(
       putString("shape", shape)
       putDouble("aspectRatio", aspectRatio ?: 0.0)
       putString("format", format)
-      putDouble("compressImageQuality", compressImageQuality ?: 0.0)
+      putDouble("compressImageQuality", compressImageQuality ?: 1.0)
     }
 
   companion object {

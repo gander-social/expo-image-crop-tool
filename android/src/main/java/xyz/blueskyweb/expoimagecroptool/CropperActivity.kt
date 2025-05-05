@@ -203,7 +203,7 @@ class CropperActivity : AppCompatActivity() {
             return
           }
         },
-        (100 * (intent.getDoubleExtra("compressImageQuality", 1.0))).toInt(),
+        (intent.getDoubleExtra("compressImageQuality", 1.0) * 100).toInt(),
         out,
       )
     } ?: run {
