@@ -119,27 +119,18 @@ class Cropper: NSObject, CropViewControllerDelegate {
       throw CropperError.findRootView
     }
 
-    guard let toPresentInVc = Self.getTopmostViewController(from: rootVc) else {
-      throw CropperError.findRootView
-    }
-
     guard let cropVc = self.cropVc else {
       return
     }
 
-    toPresentInVc.present(cropVc, animated: true)
+    DispatchQueue.main.async {
+      rootVc.topmostViewController().present(cropVc, animated: true)
+    }
   }
 
   private static func getTempUrl(ext: String) -> URL? {
     let dir = FileManager().temporaryDirectory
     return URL(string: "\(dir.absoluteString)\(ProcessInfo.processInfo.globallyUniqueString).\(ext)")!
-  }
-
-  private static func getTopmostViewController(from vc: UIViewController) -> UIViewController? {
-    if let pvc = vc.presentedViewController {
-      return getTopmostViewController(from: pvc)
-    }
-    return vc
   }
 }
 
@@ -147,5 +138,18 @@ extension String {
   func deletingPrefix(_ prefix: String) -> String {
     guard self.hasPrefix(prefix) else { return self }
     return String(self.dropFirst(prefix.count))
+  }
+}
+
+extension UIViewController {
+  func topmostViewController() -> UIViewController {
+    if let pvc = self.presentedViewController {
+      if pvc.isBeingDismissed {
+        return self
+      }
+      return pvc.topmostViewController()
+    } else {
+      return self
+    }
   }
 }
