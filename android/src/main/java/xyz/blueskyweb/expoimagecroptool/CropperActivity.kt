@@ -99,14 +99,6 @@ class CropperActivity : AppCompatActivity() {
       insets
     }
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-      window.insetsController?.systemBarsBehavior =
-        android.view.WindowInsetsController.BEHAVIOR_DEFAULT
-    } else {
-      @Suppress("DEPRECATION")
-      window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
-    }
-
     val root =
       FrameLayout(this).apply {
         setBackgroundColor(Color.BLACK)
