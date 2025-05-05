@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.graphics.Matrix
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
@@ -19,6 +20,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.core.graphics.toColorInt
 import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import com.canhub.cropper.CropImageView
 import java.io.File
@@ -44,6 +46,9 @@ class CropperActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+
+    // Enable edge-to-edge mode but keep navigation bar persistent
+    WindowCompat.setDecorFitsSystemWindows(window, false)
 
     val options =
       intent.extras?.let {
@@ -179,6 +184,22 @@ class CropperActivity : AppCompatActivity() {
     )
 
     setContentView(root)
+
+    ViewCompat.setOnApplyWindowInsetsListener(root) { view, insets ->
+      val systemBarsInsets = insets.getInsets(WindowInsetsCompat.Type.navigationBars())
+      view.setPadding(0, systemBarsInsets.top, 0, systemBarsInsets.bottom)
+      insets
+    }
+
+    // 31 or higher
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+      window.insetsController?.let {
+        it.systemBarsBehavior = android.view.WindowInsetsController.BEHAVIOR_DEFAULT
+      }
+    } else {
+      @Suppress("DEPRECATION")
+      window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+    }
   }
 
   fun onDone() {
@@ -193,6 +214,8 @@ class CropperActivity : AppCompatActivity() {
     val uri = tempFile.toUri()
     val out = contentResolver.openOutputStream(uri)
     out?.let {
+      val quality = (intent.getDoubleExtra("compressImageQuality", 1.0) * 100).toInt()
+      Log.d("ExpoCropTool", "quality was $quality")
       bmap.compress(
         when (format) {
           "png" -> android.graphics.Bitmap.CompressFormat.PNG
@@ -203,7 +226,7 @@ class CropperActivity : AppCompatActivity() {
             return
           }
         },
-        (intent.getDoubleExtra("compressImageQuality", 1.0) * 100).toInt(),
+        quality,
         out,
       )
     } ?: run {
