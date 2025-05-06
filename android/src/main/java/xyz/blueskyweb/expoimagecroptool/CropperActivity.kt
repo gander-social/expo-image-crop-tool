@@ -148,9 +148,9 @@ class CropperActivity : AppCompatActivity() {
         text = "Reset"
         layoutParams = LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT).withMargin()
         setOnClickListener {
-          prevRotation = 0
-          cropView.rotation = 0f
+          cropView.rotateImage(-1 * prevRotation)
           cropView.resetCropRect()
+          prevRotation = 0
         }
       }
     bar.addView(resetBtn)
@@ -160,8 +160,8 @@ class CropperActivity : AppCompatActivity() {
         text = "Rotate"
         layoutParams = LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT).withMargin()
         setOnClickListener {
+          cropView.rotateImage(90)
           prevRotation = (prevRotation + 90) % 360
-          cropView.rotation = prevRotation.toFloat()
         }
       }
     bar.addView(rotateBtn)
