@@ -18,6 +18,9 @@ struct OpenCropperOptions: Record {
 
   @Field
   var rotationEnabled: Bool = true
+
+  @Field
+  var rotationControlEnabled: Bool = true
 }
 
 struct OpenCropperResult: Record {

@@ -61,6 +61,11 @@ class Cropper: NSObject, CropViewControllerDelegate {
 
     var viewConfig = Mantis.CropViewConfig()
 
+    if options.rotationControlEnabled == false {
+      // Disable rotation control view if rotationControlEnabled is false
+      viewConfig.showAttachedRotationControlView = false
+    }
+
     // Disable rotation control view if rotationEnabled is false
     if options.rotationEnabled == false {
       // Create a toolbar config with rotation buttons removed

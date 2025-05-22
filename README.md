@@ -50,7 +50,11 @@ If outputting a JPEG image, the compression quality for the output image.
 
 ### `rotationEnabled?: boolean`
 
-Whether or not to allow the user to rotate the image. Default is `true`.
+Whether or not to allow the user to rotate the image in 90 degree segments. Default is `true`.
+
+### `rotationControlEnabled?: boolean`
+
+Whether or not to show the rotation control view. Default is `true` (iOS ONLY).
 
 ## `OpenCropperResult`
 
