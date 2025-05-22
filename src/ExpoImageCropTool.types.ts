@@ -4,6 +4,7 @@ export interface OpenCropperOptions {
   aspectRatio?: number;
   format?: "jpeg" | "png";
   compressImageQuality?: number;
+  rotationEnabled?: boolean;
 }
 
 export interface OpenCropperResult {
