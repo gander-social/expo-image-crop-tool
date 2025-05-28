@@ -13,7 +13,7 @@ For bare React Native projects, you must ensure that you have [installed and con
 ### Add the package to your npm dependencies
 
 ```bash
-npkm install expo-image-crop-tool
+npm install expo-image-crop-tool
 cd ios
 pod install
 ```
