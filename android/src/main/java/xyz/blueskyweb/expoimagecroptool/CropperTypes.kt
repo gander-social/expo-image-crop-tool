@@ -30,7 +30,7 @@ class OpenCropperOptions(
         aspectRatio = bundle.getDouble("aspectRatio"),
         format = bundle.getString("format"),
         compressImageQuality = bundle.getDouble("compressImageQuality"),
-        rotationEnabled = bundle.getBoolean("rotationEnabled", true)
+        rotationEnabled = bundle.getBoolean("rotationEnabled", true),
       )
   }
 }
