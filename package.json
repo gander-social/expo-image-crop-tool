@@ -25,13 +25,13 @@
     "image",
     "ExpoImageCropTool"
   ],
-  "repository": "https://github.com/bluesky-social/expo-image-crop-tool",
+  "repository": "https://github.com/gander-social/expo-image-crop-tool",
   "bugs": {
-    "url": "https://github.com/bluesky-social/expo-image-crop-tool/issues"
+    "url": "https://github.com/gander-social/expo-image-crop-tool/issues"
   },
-  "author": "Hailey <me@haileyok.com> (https://github.com/bluesky-social)",
+  "author": "Hailey <me@haileyok.com> (https://github.com/gander-social)",
   "license": "MIT",
-  "homepage": "https://github.com/bluesky-social/expo-image-crop-tool#readme",
+  "homepage": "https://github.com/gander-social/expo-image-crop-tool#readme",
   "dependencies": {},
   "devDependencies": {
     "@types/react": "~19.0.0",

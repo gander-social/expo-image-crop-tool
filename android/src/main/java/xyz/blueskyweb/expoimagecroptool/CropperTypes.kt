@@ -1,4 +1,4 @@
-package xyz.blueskyweb.expoimagecroptool
+package xyz.ganderweb.expoimagecroptool
 
 import android.os.Bundle
 import expo.modules.kotlin.records.Field

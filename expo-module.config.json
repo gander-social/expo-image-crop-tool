@@ -4,6 +4,6 @@
     "modules": ["ExpoImageCropToolModule"]
   },
   "android": {
-    "modules": ["xyz.blueskyweb.expoimagecroptool.ExpoImageCropToolModule"]
+    "modules": ["xyz.ganderweb.expoimagecroptool.ExpoImageCropToolModule"]
   }
 }

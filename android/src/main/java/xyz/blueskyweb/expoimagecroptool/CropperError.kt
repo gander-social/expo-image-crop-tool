@@ -1,4 +1,4 @@
-package xyz.blueskyweb.expoimagecroptool
+package xyz.ganderweb.expoimagecroptool
 
 sealed class CropperError(
   message: String,

@@ -14,7 +14,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "xyz.blueskyweb.expoimagecroptool.example"
+      "bundleIdentifier": "xyz.ganderweb.expoimagecroptool.example"
     },
     "android": {
       "adaptiveIcon": {
@@ -22,7 +22,7 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "xyz.blueskyweb.expoimagecroptool.example"
+      "package": "xyz.ganderweb.expoimagecroptool.example"
     },
     "web": {
       "favicon": "./assets/favicon.png"

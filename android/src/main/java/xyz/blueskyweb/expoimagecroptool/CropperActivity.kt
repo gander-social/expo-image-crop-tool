@@ -1,4 +1,4 @@
-package xyz.blueskyweb.expoimagecroptool
+package xyz.ganderweb.expoimagecroptool
 
 import android.content.Context
 import android.content.Intent

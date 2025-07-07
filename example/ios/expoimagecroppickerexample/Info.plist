@@ -27,7 +27,7 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>xyz.blueskyweb.expoimagecroptool.example</string>
+          <string>xyz.ganderweb.expoimagecroptool.example</string>
         </array>
       </dict>
     </array>
